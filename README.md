@@ -8,7 +8,7 @@ Taiga plugin for Let's Chat (https://sdelements.github.io/lets-chat/) integratio
 Installation
 ------------
 
-### Taiga Back
+#### Taiga Back
 
 In your Taiga back python virtualenv install the pip package taiga-contrib-letschat with:
 
@@ -28,7 +28,7 @@ Then run the migrations to generate the new need table:
   python manage.py migrate taiga_contrib_letschat
 ```
 
-### Taiga Front
+#### Taiga Front
 
 Download in your `dist/js/` directory of Taiga front the `taiga-contrib-letschat` compiled code:
 
