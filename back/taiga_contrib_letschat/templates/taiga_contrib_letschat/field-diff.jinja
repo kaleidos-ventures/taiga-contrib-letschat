@@ -1,0 +1,55 @@
+{% if field_name == "points" %}
+    {% for role, points in values.items() %}
+        **{{ role }} role points** **From:** "{{ points.0 }}" **To:** "{{ points.1 }}"
+    {% endfor %}
+{% elif field_name == "attachments" %}
+    {% if values.new %}
+        {% for att in values['new']%}
+            **{{ _("Added new attachment") }}:**[{{ att.filename }}]({{ att.url }}) {% if att.description %}{{ att.description }}{% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if values.changed %}
+        {% for att in values['changed'] %}
+            **{{ _("Updated attachment") }}:**[{{ att.filename }}]({{ att.url }}) {% if att.changes.is_deprecated %} {% if att.changes.is_deprecated.1 %}_{{ _("deprecated") }}_{% else %}_{{ _("not deprecated") }}_{% endif %}{% endif %}{% if att.changes.description %}{{ att.changes.description.1 }}{% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if values.deleted %}
+        {% for att in values['deleted']%}
+            **{{ _("Deleted attachment") }}:** {{ att.filename }}
+        {% endfor %}
+    {% endif %}
+
+{% elif field_name in ["tags", "watchers"] %}
+    **{{ field_name|title }}** **From:** "{{ ', '.join(values.0) }}" **To:** "{{ ', '.join(values.1) }}"
+
+{% elif field_name in ["description", "content", "blocked_note"] %}
+    **{{ field_name.replace("_", " ") }}** {% if values.0 %}**From:** "{{ values.0 }}"{% endif %} **To:** "{{ values.1 or "empty" }}"
+
+{% elif field_name == "assigned_to" %}
+    **Assigned to** **From:** {% if values.0 != None and values.0 != "" %} {{ values.0 }} {% else %} {{ _("Unassigned") }} {% endif %} **To:** {% if values.1 != None and values.1 != "" %}{{ values.1 }} {% else %} {{ _("Unassigned") }} {% endif %}
+
+{% elif field_name == "custom_attributes" %}
+    {% if values.new %}
+        {% for att in values.new %}
+            **{{ att.name|title }}**
+            **To:** "{{ att.value }}"
+        {% endfor %}
+    {% endif %}
+
+    {% if values.changed %}
+        {% for att in values.changed %}
+            **{{ att.name|title }}** **From:** "{{ att.changes.value.0 }}" **To:** "{{ att.changes.value.1 }}"
+        {% endfor %}
+    {% endif %}
+
+    {% if values.deleted %}
+        {% for att in values.deleted %}
+            **{{ att.name|title }}**_{{ _("deleted") }}_
+        {% endfor %}
+    {% endif %}
+
+{% else %}
+    **{{ field_name|title }}** **From:** "{{ values.0 }}" **To:** "{{ values.1 }}"
+{% endif %}

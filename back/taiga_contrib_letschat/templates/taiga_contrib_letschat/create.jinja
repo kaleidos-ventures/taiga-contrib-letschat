@@ -1,0 +1,17 @@
+{% if obj_type == "issue" %}
+    {% set final_url = resolve_front_url("issue", obj.project.slug, obj.ref) %}
+    {{ _("New Issue created: ") }} [#{{obj.ref}}: {{obj.subject}}]({{final_url}})
+{% elif obj_type == "task" %}
+    {% set final_url = resolve_front_url("task", obj.project.slug, obj.ref) %}
+    {{ _("New Task created: ") }} [#{{obj.ref}}: {{obj.subject}}]({{final_url}})
+{% elif obj_type == "userstory" %}
+    {% set final_url = resolve_front_url("userstory", obj.project.slug, obj.ref) %}
+    {{ _("New User Story created: ") }} [#{{obj.ref}}: {{obj.subject}}]({{final_url}})
+{% elif obj_type == "wikipage" %}
+    {% set final_url = resolve_front_url("wiki", obj.project.slug, obj.slug) %}
+    {{ _("New Wiki Page created: ") }} [{{obj.slug}}]({{final_url}})
+{% elif obj_type == "milestone" %}
+    {% set final_url = resolve_front_url("taskboard", obj.project.slug, obj.slug) %}
+    {{ _("New Sprint: ") }} [{{obj.name}}]({{final_url}})
+    from: *{{obj.estimated_start}}* to: *{{ obj.estimated_finish }}*
+{% endif %}
