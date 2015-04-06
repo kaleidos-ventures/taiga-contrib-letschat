@@ -1,0 +1,30 @@
+{
+  "name": "taiga-contrib-letschat",
+  "version": "0.0.1",
+  "description": "Taiga contrib plugin for LetsChat integration",
+  "main": "index.js",
+  "scripts": {
+    "build-jade": "node_modules/jade/bin/jade.js partials/contrib/letschat.jade -o dist/",
+    "build-coffee": "cat coffee/letschat.coffee dist/letschat.html | node_modules/coffee-script/bin/coffee --compile --stdio > dist/letschat.js",
+    "build": "npm run build-jade; npm run build-coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taigaio/taiga-contrib-letschat"
+  },
+  "keywords": [
+    "letschat",
+    "taiga",
+    "integration"
+  ],
+  "author": "Andrea Stagi <stagi.andrea@gmail.com>",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/taigaio/taiga-contrib-letschat/issues"
+  },
+  "homepage": "https://github.com/taigaio/taiga-contrib-letschat",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "jade": "^1.9.1"
+  }
+}
