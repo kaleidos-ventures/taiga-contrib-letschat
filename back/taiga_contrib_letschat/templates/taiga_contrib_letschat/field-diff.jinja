@@ -5,13 +5,13 @@
 {% elif field_name == "attachments" %}
     {% if values.new %}
         {% for att in values['new']%}
-            **{{ _("Added new attachment") }}:**[{{ att.filename }}]({{ att.url }}) {% if att.description %}{{ att.description }}{% endif %}
+            **{{ _("Added new attachment") }}:** [{{ att.filename }}]({{ att.url }}) {% if att.description %}{{ att.description }}{% endif %}
         {% endfor %}
     {% endif %}
 
     {% if values.changed %}
         {% for att in values['changed'] %}
-            **{{ _("Updated attachment") }}:**[{{ att.filename }}]({{ att.url }}) {% if att.changes.is_deprecated %} {% if att.changes.is_deprecated.1 %}_{{ _("deprecated") }}_{% else %}_{{ _("not deprecated") }}_{% endif %}{% endif %}{% if att.changes.description %}{{ att.changes.description.1 }}{% endif %}
+            **{{ _("Updated attachment") }}:** [{{ att.filename }}]({{ att.url }}) {% if att.changes.is_deprecated %} {% if att.changes.is_deprecated.1 %}_{{ _("deprecated") }}_{% else %}_{{ _("not deprecated") }}_{% endif %}{% endif %}{% if att.changes.description %}{{ att.changes.description.1 }}{% endif %}
         {% endfor %}
     {% endif %}
 
