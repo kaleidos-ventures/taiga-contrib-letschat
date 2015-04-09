@@ -36,7 +36,6 @@ def _get_type(obj):
 
 
 def _send_request(url, token, data):
-    data['text'] = data['text'].replace('\r', ' ').replace('\n', ' ')
     serialized_data = UnicodeJSONRenderer().render(data)
     headers = {
         'Authorization': 'Bearer ' + token,
@@ -84,7 +83,7 @@ def change_letschathook(url, token, obj, change):
             if field_name in included_fields:
                 attachment = _markdown_field_to_attachment(template_field, field_name, values)
 
-                data["text"] += '' + attachment
+                data["text"] += '\n' + attachment
 
     # Get rest of  fields
     if change.values_diff:
@@ -101,7 +100,7 @@ def change_letschathook(url, token, obj, change):
             attachment = _field_to_attachment(template_field, field_name, values)
 
             if attachment:
-                data["text"] += '' + attachment
+                data["text"] += '\n' + attachment
 
     _send_request(url, token, data)
 

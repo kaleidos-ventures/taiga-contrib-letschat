@@ -9,7 +9,5 @@
 {% elif obj_type == "milestone" %}
     {{ _("Deleted Sprint: ") }} {{obj.name}}
 {% endif %}
-**{{ _("Creator: ") }}**{{ obj.owner.get_full_name() }}
-{% if obj.description %}
-    **{{ _("Description: ") }}**{{ obj.description }}
-{%endif %}
+**{{ _("Creator: ") }}** {{ obj.owner.get_full_name() }}
+{% if obj.description %}**{{ _("Description: ") }}** {{ obj.description }}{%endif %}
