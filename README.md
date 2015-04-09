@@ -34,7 +34,7 @@ Download in your `dist/js/` directory of Taiga front the `taiga-contrib-letschat
 
 ```bash
   cd dist/js
-  wget "https://raw.githubusercontent.com/taigaio/taiga-contrib-letschat/stable/front/dist/letschat.js"
+  wget "https://raw.githubusercontent.com/taigaio/taiga-contrib-letschat/master/front/dist/letschat.js"
 ```
 
 Include in your dist/js/conf.json in the contribPlugins list the value `"/js/letschat.js"`:
