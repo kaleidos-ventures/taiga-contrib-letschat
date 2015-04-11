@@ -6,7 +6,7 @@
 
   letsChatInfo = {
     slug: "letschat",
-    name: "LetsChat",
+    name: "Let's Chat",
     type: "admin",
     module: 'taigaContrib.letschat'
   };
@@ -38,7 +38,7 @@
       this.appTitle = appTitle;
       this.confirm = confirm;
       this.http = http;
-      this.scope.sectionName = "LetsChat";
+      this.scope.sectionName = "Let's Chat";
       this.scope.sectionSlug = "letschat";
       this.scope.$on("project:loaded", (function(_this) {
         return function() {
@@ -144,7 +144,7 @@
 
   module.run([
     '$templateCache', function($templateCache) {
-      return $templateCache.put('contrib/letschat', '<div contrib-letschat-webhooks="contrib-letschat-webhooks" ng-controller="ContribLetsChatAdminController as ctrl"><header><h1 tg-main-title="tg-main-title"></h1></header><form><label for="url">LetsChat webhook url</label><div class="contrib-form-wrapper"><fieldset class="contrib-input"><input type="text" name="url" ng-model="letschathook.url" placeholder="LetsChat server" id="url"/><input type="text" name="token" ng-model="letschathook.token" placeholder="LetsChat webhook token" id="token"/></fieldset><fieldset ng-show="letschathook.id" class="contrib-test"><a href="" title="Test" ng-click="ctrl.testHook()" class="button-gray"><span>Test</span></a></fieldset></div><button type="submit" class="hidden"></button><a href="" title="Save" ng-click="ctrl.updateOrCreateHook(letschathook)" class="button-green submit-button"><span>Save</span></a></form><a href="https://taiga.io/support/letschat-integration/" target="_blank" class="help-button"><span class="icon icon-help"></span><span>Do you need help? Check out our support page!</span></a></div>');
+      return $templateCache.put('contrib/letschat', '<div contrib-letschat-webhooks="contrib-letschat-webhooks" ng-controller="ContribLetsChatAdminController as ctrl"><header><h1 tg-main-title="tg-main-title"></h1></header><form><div class="contrib-form-wrapper"><fieldset class="contrib-input"><label for="url">Let\'s Chat messages endpoint</label><input type="text" name="url" ng-model="letschathook.url" placeholder="Let\'s Chat messages endpoint" id="url"/><label for="token">Let\'s Chat Auth token</label><input type="text" name="token" ng-model="letschathook.token" placeholder="Let\'s Chat Auth token" id="token"/></fieldset></div><fieldset ng-show="letschathook.id"><a href="" title="Test" ng-click="ctrl.testHook()" style="display:block;text-align: center;" class="button-gray"><span>Test</span></a></fieldset><button type="submit" class="hidden"></button><a href="" title="Save" ng-click="ctrl.updateOrCreateHook(letschathook)" class="button-green submit-button"><span>Save</span></a></form><!--a.help-button(href="https://taiga.io/support/letschat-integration/", target="_blank")--><!--    span.icon.icon-help--><!--    span Do you need help? Check out our support page!--><span>Let\'s Chat messages endpoint :host/rooms/:room_id_or_slug/messages</span></div>');
     }
   ]);
 

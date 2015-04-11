@@ -8,7 +8,7 @@
 
 letsChatInfo = {
     slug: "letschat"
-    name: "LetsChat"
+    name: "Let's Chat"
     type: "admin"
     module: 'taigaContrib.letschat'
 }
@@ -36,7 +36,7 @@ class LetsChatAdmin
     ]
 
     constructor: (@rootScope, @scope, @repo, @appTitle, @confirm, @http) ->
-        @scope.sectionName = "LetsChat" #i18n
+        @scope.sectionName = "Let's Chat" #i18n
         @scope.sectionSlug = "letschat" #i18n
 
         @scope.$on "project:loaded", =>
