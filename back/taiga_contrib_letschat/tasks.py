@@ -20,10 +20,8 @@ import logging
 from django.conf import settings
 from django.template import loader, Context
 
-from taiga.base.utils.db import get_typename_for_model_instance
+from taiga.base.api.renderers import UnicodeJSONRenderer
 from taiga.celery import app
-
-from .compat import UnicodeJSONRenderer
 
 
 logger = logging.getLogger(__name__)
