@@ -1,11 +1,6 @@
 # Changelog #
 
 
-## 0.0.2
-
+## 0.0.1 (unreleased)
 - Add compatibility with taiga >= 1.7.
-
-
-## 0.0.1
-
 - Initial release.
