@@ -29,13 +29,13 @@
   };
 
   LetsChatAdmin = (function() {
-    LetsChatAdmin.$inject = ["$rootScope", "$scope", "$tgRepo", "$appTitle", "$tgConfirm", "$tgHttp"];
+    LetsChatAdmin.$inject = ["$rootScope", "$scope", "$tgRepo", "tgAppMetaService", "$tgConfirm", "$tgHttp"];
 
-    function LetsChatAdmin(rootScope, scope, repo, appTitle, confirm, http) {
+    function LetsChatAdmin(rootScope, scope, repo, appMetaService, confirm, http) {
       this.rootScope = rootScope;
       this.scope = scope;
       this.repo = repo;
-      this.appTitle = appTitle;
+      this.appMetaService = appMetaService;
       this.confirm = confirm;
       this.http = http;
       this.scope.sectionName = "Let's Chat";
@@ -47,13 +47,16 @@
             project: _this.scope.projectId
           });
           promise.then(function(letschathooks) {
+            var description, title;
             _this.scope.letschathook = {
               project: _this.scope.projectId
             };
             if (letschathooks.length > 0) {
               _this.scope.letschathook = letschathooks[0];
             }
-            return _this.appTitle.set("LetsChat - " + _this.scope.project.name);
+            title = _this.scope.sectionName + " - Plugins - " + _this.scope.project.name;
+            description = _this.scope.project.description;
+            return _this.appMetaService.setAll(title, description);
           });
           return promise.then(null, function() {
             return _this.confirm.notify("error");

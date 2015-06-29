@@ -30,12 +30,12 @@ class LetsChatAdmin
         "$rootScope",
         "$scope",
         "$tgRepo",
-        "$appTitle",
+        "tgAppMetaService",
         "$tgConfirm",
         "$tgHttp",
     ]
 
-    constructor: (@rootScope, @scope, @repo, @appTitle, @confirm, @http) ->
+    constructor: (@rootScope, @scope, @repo, @appMetaService, @confirm, @http) ->
         @scope.sectionName = "Let's Chat" #i18n
         @scope.sectionSlug = "letschat" #i18n
 
@@ -46,7 +46,10 @@ class LetsChatAdmin
                 @scope.letschathook = {project: @scope.projectId}
                 if letschathooks.length > 0
                     @scope.letschathook = letschathooks[0]
-                @appTitle.set("LetsChat - " + @scope.project.name)
+
+                title = "#{@scope.sectionName} - Plugins - #{@scope.project.name}" # i18n
+                description = @scope.project.description
+                @appMetaService.setAll(title, description)
 
             promise.then null, =>
                 @confirm.notify("error")

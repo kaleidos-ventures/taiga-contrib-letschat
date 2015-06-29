@@ -2,5 +2,5 @@
 
 
 ## 0.0.1 (unreleased)
-- Add compatibility with taiga >= 1.7.
+- Add compatibility with taiga >= 1.8.
 - Initial release.
