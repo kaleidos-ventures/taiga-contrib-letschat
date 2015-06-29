@@ -11,7 +11,15 @@ Installation
 
 #### Taiga Back
 
-In your Taiga back python virtualenv install back/taiga_contrib_letschat app, then modify your settings/local.py and include the line:
+In your Taiga back python virtualenv install taiga_contrib_letschat app:
+
+```bash
+  git clone https://github.com/taigaio/taiga-contrib-letschat.git
+  cd taiga-contrib-letschat/back
+  python setup.py install
+```
+
+Then modify your settings/local.py and include the line:
 
 ```python
   INSTALLED_APPS += ["taiga_contrib_letschat"]
