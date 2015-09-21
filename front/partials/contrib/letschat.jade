@@ -16,6 +16,111 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
                 label(for="token") Let's Chat Auth token
                 input(type="text", name="token", ng-model="letschathook.token", placeholder="Let's Chat Auth token", id="token")
 
+        fieldset
+            h2 Notify User Stories
+            div.check-item
+                span Create
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_userstory_create")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Change
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_userstory_change")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Delete
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_userstory_delete")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+        fieldset
+            h2 Notify Tasks
+            div.check-item
+                span Create
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_task_create")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Change
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_task_change")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Delete
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_task_delete")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+        fieldset
+            h2 Notify Issues
+            div.check-item
+                span Create
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_issue_create")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Change
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_issue_change")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Delete
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_issue_delete")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+
+        fieldset
+            h2 Notify Wiki
+            div.check-item
+                span Create
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_wikipage_create")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Change
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_wikipage_change")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
+            div.check-item
+                span Delete
+                div.check
+                    input(type="checkbox" name="notification" ng-model="letschathook.notify_wikipage_delete")
+                    div
+                    span.check-text.check-yes(translate="COMMON.YES")
+                    span.check-text.check-no(translate="COMMON.NO")
+
         fieldset(ng-show="letschathook.id")
             a.button-gray(href="", title="Test", ng-click="ctrl.testHook()" style="display:block;text-align: center;")
                 span Test

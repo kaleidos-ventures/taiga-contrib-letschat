@@ -24,3 +24,19 @@ class LetsChatHook(models.Model):
     url = models.URLField(null=False, blank=False, verbose_name=_("URL"))
     token = models.CharField(null=False, blank=False,
         verbose_name=_("Token"), max_length=200)
+
+    notify_issue_create = models.BooleanField(default=True)
+    notify_issue_change = models.BooleanField(default=True)
+    notify_issue_delete = models.BooleanField(default=True)
+
+    notify_userstory_create = models.BooleanField(default=True)
+    notify_userstory_change = models.BooleanField(default=True)
+    notify_userstory_delete = models.BooleanField(default=True)
+
+    notify_task_create = models.BooleanField(default=True)
+    notify_task_change = models.BooleanField(default=True)
+    notify_task_delete = models.BooleanField(default=True)
+
+    notify_wikipage_create = models.BooleanField(default=True)
+    notify_wikipage_change = models.BooleanField(default=True)
+    notify_wikipage_delete = models.BooleanField(default=True)

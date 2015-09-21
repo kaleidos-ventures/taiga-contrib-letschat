@@ -29,6 +29,20 @@ def _get_project_letschathooks(project):
             "id": letschathook.pk,
             "url": letschathook.url,
             "token": letschathook.token,
+            "notify_config": {
+                "notify_issue_create": letschathook.notify_issue_create,
+                "notify_issue_change": letschathook.notify_issue_change,
+                "notify_issue_delete": letschathook.notify_issue_delete,
+                "notify_userstory_create": letschathook.notify_userstory_create,
+                "notify_userstory_change": letschathook.notify_userstory_change,
+                "notify_userstory_delete": letschathook.notify_userstory_delete,
+                "notify_task_create": letschathook.notify_task_create,
+                "notify_task_change": letschathook.notify_task_change,
+                "notify_task_delete": letschathook.notify_task_delete,
+                "notify_wikipage_create": letschathook.notify_wikipage_create,
+                "notify_wikipage_change": letschathook.notify_wikipage_change,
+                "notify_wikipage_delete": letschathook.notify_wikipage_delete
+            }
         })
     return letschathooks
 
@@ -54,7 +68,10 @@ def on_new_history_entry(sender, instance, created, **kwargs):
         extra_args = []
 
     for letschathook in letschathooks:
-        args = [letschathook["url"], letschathook["token"], obj] + extra_args
+        args = [
+            letschathook["url"], letschathook["token"],
+            letschathook["notify_config"], obj
+        ] + extra_args
 
         if settings.CELERY_ENABLED:
             task.delay(*args)

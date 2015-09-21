@@ -60,10 +60,16 @@ def _field_to_attachment(template_field, field_name, values):
 
     return change_field_text.strip()
 
+def _check_notify_permission(notify_config, obj_type, action):
+    return notify_config['notify_{0}_{1}'.format(obj_type, action)]
+
 
 @app.task
-def change_letschathook(url, token, obj, change):
+def change_letschathook(url, token, notify_config, obj, change):
     obj_type = _get_type(obj)
+
+    if not _check_notify_permission(notify_config, obj_type, 'change'):
+        return
 
     template_change = loader.get_template('taiga_contrib_letschat/change.jinja')
     context = Context({"obj": obj, "obj_type": obj_type, "change": change})
@@ -103,8 +109,11 @@ def change_letschathook(url, token, obj, change):
 
 
 @app.task
-def create_letschathook(url, token, obj):
+def create_letschathook(url, token, notify_config, obj):
     obj_type = _get_type(obj)
+
+    if not _check_notify_permission(notify_config, obj_type, 'create'):
+        return
 
     template = loader.get_template('taiga_contrib_letschat/create.jinja')
     context = Context({"obj": obj, "obj_type": obj_type})
@@ -116,8 +125,11 @@ def create_letschathook(url, token, obj):
 
 
 @app.task
-def delete_letschathook(url, token, obj):
+def delete_letschathook(url, token, notify_config, obj):
     obj_type = _get_type(obj)
+
+    if not _check_notify_permission(notify_config, obj_type, 'delete'):
+        return
 
     template = loader.get_template('taiga_contrib_letschat/delete.jinja')
     context = Context({"obj": obj, "obj_type": obj_type})
