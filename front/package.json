@@ -1,6 +1,6 @@
 {
   "name": "taiga-contrib-letschat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Taiga contrib plugin for LetsChat integration",
   "main": "index.js",
   "scripts": {
