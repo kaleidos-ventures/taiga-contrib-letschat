@@ -3,7 +3,7 @@ Taiga Contrib Let's Chat
 
 Taiga plugin for Let's Chat (https://sdelements.github.io/lets-chat/) integration.
 
-> **NOTE 2: Let's Chat team is working to add markdown support, please use this branch for testing: https://github.com/sdelements/lets-chat/tree/try-md**
+> **NOTE: Let's Chat team is working to add markdown support, please use this branch for testing: https://github.com/sdelements/lets-chat/tree/try-md**
 
 Installation
 ------------
