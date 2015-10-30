@@ -61,7 +61,7 @@ def _field_to_attachment(template_field, field_name, values):
     return change_field_text.strip()
 
 def _check_notify_permission(notify_config, obj_type, action):
-    return notify_config['notify_{0}_{1}'.format(obj_type, action)]
+    return notify_config.get('notify_{0}_{1}'.format(obj_type, action), False)
 
 
 @app.task
