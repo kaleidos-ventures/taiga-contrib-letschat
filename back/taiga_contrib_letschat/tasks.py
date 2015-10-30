@@ -1,4 +1,4 @@
-# Copyright (C) 2013 Andrey Antukh <niwi@niwi.be>
+# Copyright (C) 2014-2015 Andrey Antukh <niwi@niwi.be>
 # Copyright (C) 2014-2015 Jesús Espino <jespinog@gmail.com>
 # Copyright (C) 2014-2015 David Barragán <bameda@dbarragan.com>
 # This program is free software: you can redistribute it and/or modify
@@ -49,14 +49,14 @@ def _send_request(url, token, data):
 
 def _markdown_field_to_attachment(template_field, field_name, values):
     context = Context({"field_name": field_name, "values": values})
-    change_field_text = template_field.render(context)
+    change_field_text = template_field.render(context.flatten())
 
     return change_field_text.strip()
 
 
 def _field_to_attachment(template_field, field_name, values):
     context = Context({"field_name": field_name, "values": values})
-    change_field_text = template_field.render(context)
+    change_field_text = template_field.render(context.flatten())
 
     return change_field_text.strip()
 
@@ -74,7 +74,7 @@ def change_letschathook(url, token, notify_config, obj, change):
     template_change = loader.get_template('taiga_contrib_letschat/change.jinja')
     context = Context({"obj": obj, "obj_type": obj_type, "change": change})
 
-    change_text = template_change.render(context)
+    change_text = template_change.render(context.flatten())
     data = {"text": change_text.strip()}
 
     # Get markdown fields
@@ -88,7 +88,7 @@ def change_letschathook(url, token, notify_config, obj, change):
 
                 data["text"] += '\n' + attachment
 
-    # Get rest of  fields
+    # Get rest of fields
     if change.values_diff:
         template_field = loader.get_template('taiga_contrib_letschat/field-diff.jinja')
         excluded_fields = ["description_diff", "description_html", "content_diff",
@@ -119,7 +119,7 @@ def create_letschathook(url, token, notify_config, obj):
     context = Context({"obj": obj, "obj_type": obj_type})
 
     data = {
-        "text": template.render(context),
+        "text": template.render(context.flatten()),
     }
     _send_request(url, token, data)
 
@@ -135,7 +135,7 @@ def delete_letschathook(url, token, notify_config, obj):
     context = Context({"obj": obj, "obj_type": obj_type})
 
     data = {
-        "text": template.render(context),
+        "text": template.render(context.flatten()),
     }
 
     _send_request(url, token, data)
