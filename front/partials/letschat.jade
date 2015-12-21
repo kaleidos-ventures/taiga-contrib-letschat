@@ -1,5 +1,5 @@
 |module.run(['$templateCache', ($templateCache) ->
-|  $templateCache.put('contrib/letschat', '''
+|  $templateCache.put('plugin/letschat', '''
 div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as ctrl")
     header
         h1
@@ -12,9 +12,22 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
         div.contrib-form-wrapper
             fieldset.contrib-input
                 label(for="url") Let's Chat messages endpoint
-                input(type="text", name="url", ng-model="letschathook.url", placeholder="Let's Chat messages endpoint", id="url")
+                input(
+                    type="text"
+                    name="url"
+                    ng-model="letschathook.url"
+                    placeholder="Let's Chat messages endpoint"
+                    id="url"
+                )
+
                 label(for="token") Let's Chat Auth token
-                input(type="text", name="token", ng-model="letschathook.token", placeholder="Let's Chat Auth token", id="token")
+                input(
+                    type="text"
+                    name="token"
+                    ng-model="letschathook.token"
+                    placeholder="Let's Chat auth token"
+                    id="token"
+                )
 
         fieldset
             h2 Notify User Stories
@@ -122,7 +135,12 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
                     span.check-text.check-no(translate="COMMON.NO")
 
         fieldset(ng-show="letschathook.id")
-            a.button-gray(href="", title="Test", ng-click="ctrl.testHook()" style="display:block;text-align: center;")
+            a.button-gray(
+                href=""
+                title="Test"
+                ng-click="ctrl.testHook()"
+                style="display:block;text-align: center;"
+            )
                 span Test
 
         button(type="submit", class="hidden")

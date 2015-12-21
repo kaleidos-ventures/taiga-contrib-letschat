@@ -1,29 +1,6 @@
-
-#curl -X POST -d "{\"text\" : \"eclisse.jpg\"}" -H "Content-Type: application/json"
-#-H "Authorization: Bearer NTRlYWZjNjUzYjgyNjNkMmNiNWE0OGIwOjM1NmVhMDNiZGQzYmVmY2NiMDE2OGY5NjQyNGFjNThkNzgzNGU2ODQzNWMzZDA3Zg=="
-#http://localhost:5000/rooms/dev/messages
-
-
-@.taigaContribPlugins = @.taigaContribPlugins or []
-
-letsChatInfo = {
-    slug: "letschat"
-    name: "Let's Chat"
-    type: "admin"
-    module: 'taigaContrib.letschat'
-}
-
-@.taigaContribPlugins.push(letsChatInfo)
-
-module = angular.module('taigaContrib.letschat', [])
-
 debounce = (wait, func) ->
     return _.debounce(func, wait, {leading: true, trailing: false})
 
-initLetsChatPlugin = ($tgUrls) ->
-    $tgUrls.update({
-        "letschat": "/letschat"
-    })
 
 class LetsChatAdmin
     @.$inject = [
@@ -75,7 +52,6 @@ class LetsChatAdmin
         promise.error (data, status) =>
             @confirm.notify("error")
 
-module.controller("ContribLetsChatAdminController", LetsChatAdmin)
 
 LetsChatWebhooksDirective = ($repo, $confirm, $loading) ->
     link = ($scope, $el, $attrs) ->
@@ -133,6 +109,14 @@ LetsChatWebhooksDirective = ($repo, $confirm, $loading) ->
 
     return {link:link}
 
+
+module = angular.module('taigaContrib.letschat', [])
+
+module.controller("ContribLetsChatAdminController", LetsChatAdmin)
 module.directive("contribLetschatWebhooks", ["$tgRepo", "$tgConfirm", "$tgLoading", LetsChatWebhooksDirective])
 
+initLetsChatPlugin = ($tgUrls) ->
+    $tgUrls.update({
+        "letschat": "/letschat"
+    })
 module.run(["$tgUrls", initLetsChatPlugin])

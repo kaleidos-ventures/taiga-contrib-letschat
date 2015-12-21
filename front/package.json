@@ -1,12 +1,14 @@
 {
   "name": "taiga-contrib-letschat",
-  "version": "0.0.2",
+  "version": "1.9.1",
   "description": "Taiga contrib plugin for LetsChat integration",
   "main": "index.js",
   "scripts": {
-    "build-jade": "node_modules/jade/bin/jade.js partials/contrib/letschat.jade -o dist/",
-    "build-coffee": "cat coffee/letschat.coffee dist/letschat.html | node_modules/coffee-script/bin/coffee --compile --stdio > dist/letschat.js",
-    "build": "npm run build-jade; npm run build-coffee"
+    "clean": "rm -rf dist || true",
+    "create-dist": "mkdir -p dist",
+    "copy-statics": "cp letschat.json dist/",
+    "build-js": "{ cat 'coffee/letschat.coffee'; node_modules/jade/bin/jade.js < 'partials/letschat.jade'; } | node_modules/coffee-script/bin/coffee --compile --stdio > dist/letschat.js",
+    "build": "npm run clean; npm run create-dist; npm run copy-statics; npm run build-js"
   },
   "repository": {
     "type": "git",

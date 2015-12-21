@@ -1,0 +1,9 @@
+{
+    "name": "Let's Chat",
+    "slug": "letschat",
+    "description": "Integrate Taiga with a Let's Chat server (http://sdelements.github.io/lets-chat/)",
+    "type": "admin",
+    "module": "taigaContrib.letschat",
+    "template": "plugin/letschat",
+    "js": "/plugins/letschat/letschat.js"
+}
