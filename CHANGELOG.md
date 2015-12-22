@@ -1,6 +1,11 @@
 # Changelog #
 
 
+## 1.9.1 (Unreleased)
+- [Front] Migrate to the new plugin system
+- Remove django dependency to prevent errors.
+
+
 ## 0.0.2 (2015-11-02)
 - Force to use Django == 1.8.5.
 - Add compatibility with taiga-back 1.9.
