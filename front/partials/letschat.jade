@@ -33,9 +33,9 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
                 | {{::sectionName}}
 
     form
+        label(for="url") Let's Chat webhook url
         div.contrib-form-wrapper
             fieldset.contrib-input
-                label(for="url") Let's Chat messages endpoint
                 input(
                     type="text"
                     name="url"
@@ -43,8 +43,13 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
                     placeholder="Let's Chat messages endpoint"
                     id="url"
                 )
+            fieldset(ng-show="letschathook.id")
+                a.button-gray(href="", title="Test", ng-click="ctrl.testHook()")
+                    span Test
 
-                label(for="token") Let's Chat Auth token
+        label(for="token") Let's Chat Auth token
+        div.contrib-form-wrapper
+            fieldset.contrib-input
                 input(
                     type="text"
                     name="token"
@@ -158,18 +163,13 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
                     span.check-text.check-yes(translate="COMMON.YES")
                     span.check-text.check-no(translate="COMMON.NO")
 
-        fieldset(ng-show="letschathook.id")
-            a.button-gray(
-                href=""
-                title="Test"
-                ng-click="ctrl.testHook()"
-                style="display:block;text-align: center;"
-            )
-                span Test
-
         button(type="submit", class="hidden")
         a.button-green.submit-button(href="", title="Save", ng-click="ctrl.updateOrCreateHook(letschathook)")
             span Save
 
-    span Let's Chat messages endpoint :host/rooms/:room_id_or_slug/messages , for example #[a(href="http://localhost:5000/rooms/54eafca13b8263d2cb5a48b1/messages") http:\/\/localhost:5000\/rooms\/54eafca13b8263d2cb5a48b1\/messages]
+    div.help-button
+        span.icon.icon-help
+        span Let's Chat messages endpoint :host/rooms/:room_id_or_slug/messages <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        span For example: <a>http:\/\/localhost:5000\/rooms\/54eafca13b8263d2cb5a48b1\/messages</a>
 |''')]);
