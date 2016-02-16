@@ -17,22 +17,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.apps import AppConfig
-from django.db.models import signals
-
-from . import signal_handlers as handlers
-from .api import LetsChatHookViewSet
-from taiga.projects.history.models import HistoryEntry
-
-# Register route
-from taiga.contrib_routers import router
-router.register(r"letschat", LetsChatHookViewSet, base_name="letschat")
 
 
 def connect_taiga_contrib_letschat_signals():
+    from django.db.models import signals
+    from taiga.projects.history.models import HistoryEntry
+    from . import signal_handlers as handlers
     signals.post_save.connect(handlers.on_new_history_entry, sender=HistoryEntry, dispatch_uid="taiga_contrib_letschat")
 
 
 def disconnect_taiga_contrib_letschat_signals():
+    from django.db.models import signals
     signals.post_save.disconnect(dispatch_uid="taiga_contrib_letschat")
 
 
@@ -41,4 +36,9 @@ class TaigaContribLetsChatAppConfig(AppConfig):
     verbose_name = "Taiga contrib LetsChat App Config"
 
     def ready(self):
+        from taiga.contrib_routers import router
+        from .api import LetsChatHookViewSet
+
+        router.register(r"letschat", LetsChatHookViewSet, base_name="letschat")
+
         connect_taiga_contrib_letschat_signals()
