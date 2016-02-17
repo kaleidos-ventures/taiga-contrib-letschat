@@ -7,6 +7,7 @@ Taiga plugin for Let's Chat (https://sdelements.github.io/lets-chat/) integratio
 
 Installation
 ------------
+### Production env
 
 #### Taiga Back
 
@@ -16,7 +17,7 @@ In your Taiga back python virtualenv install the pip package `taiga-contrib-lets
   pip install taiga-contrib-letschat
 ```
 
-Then modify your settings/local.py and include the line:
+Then modify 'taiga-back/settings/local.py' and include the line:
 
 ```python
   INSTALLED_APPS += ["taiga_contrib_letschat"]
@@ -28,7 +29,7 @@ Then run the migrations to generate the new need table:
   python manage.py migrate taiga_contrib_letschat
 ```
 
-### Taiga Front
+#### Taiga Front
 
 Download in your `dist/plugins/` directory of Taiga front the `taiga-contrib-letschat` compiled code (you need subversion in your system):
 
@@ -39,7 +40,7 @@ Download in your `dist/plugins/` directory of Taiga front the `taiga-contrib-let
   svn export "https://github.com/taigaio/taiga-contrib-letschat/tags/$(pip show taiga-contrib-letschat | awk '/^Version: /{print $2}')/front/dist" "letschat"
 ```
 
-Include in your dist/conf.json in the contribPlugins list the value `"/plugins/letschat/letschat.json"`:
+Include in your 'dist/conf.json' in the 'contribPlugins' list the value `"/plugins/letschat/letschat.json"`:
 
 ```json
 ...
@@ -48,4 +49,62 @@ Include in your dist/conf.json in the contribPlugins list the value `"/plugins/l
         "/plugins/letschat/letschat.json"
     ]
 ...
+```
+
+### Dev env
+
+#### Taiga Back
+
+Clone the repo and
+
+```bash
+  cd taiga-contrib-letschat/back
+  workon taiga
+  pip install -e .
+```
+
+Then modify 'taiga-back/settings/local.py' and include the line:
+
+```python
+  INSTALLED_APPS += ["taiga_contrib_letschat"]
+```
+
+Then run the migrations to generate the new need table:
+
+```bash
+  python manage.py migrate taiga_contrib_letschat
+```
+
+#### Taiga Front
+
+```bash
+  npm install
+  gulp
+```
+
+Link `dist` in `taiga-front` plugins directory:
+
+```bash
+  cd taiga-front/dist
+  mkdir -p plugins
+  cd plugins
+  ln -s ../../../taiga-contrib-letschat/dist letschat
+```
+
+Include in your 'dist/conf.json' in the 'contribPlugins' list the value `"/plugins/letschat/letschat.json"`:
+
+```json
+...
+    "contribPlugins": [
+        (...)
+        "/plugins/letschat/letschat.json"
+    ]
+...
+```
+
+If you only want to build `dist` use:
+
+```bash
+  npm install
+  gulp build
 ```
