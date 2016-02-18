@@ -17,7 +17,7 @@ In your Taiga back python virtualenv install the pip package `taiga-contrib-lets
   pip install taiga-contrib-letschat
 ```
 
-Then modify 'taiga-back/settings/local.py' and include the line:
+Modify in `taiga-back` your `settings/local.py` and include the line:
 
 ```python
   INSTALLED_APPS += ["taiga_contrib_letschat"]
@@ -63,7 +63,7 @@ Clone the repo and
   pip install -e .
 ```
 
-Then modify 'taiga-back/settings/local.py' and include the line:
+Modify in `taiga-back` your `settings/local.py` and include the line:
 
 ```python
   INSTALLED_APPS += ["taiga_contrib_letschat"]
@@ -77,12 +77,7 @@ Then run the migrations to generate the new need table:
 
 #### Taiga Front
 
-```bash
-  npm install
-  gulp
-```
-
-Link `dist` in `taiga-front` plugins directory:
+After clone the repo link `dist` in `taiga-front` plugins directory:
 
 ```bash
   cd taiga-front/dist
@@ -102,9 +97,13 @@ Include in your 'dist/conf.json' in the 'contribPlugins' list the value `"/plugi
 ...
 ```
 
-If you only want to build `dist` use:
+In the plugin source dir `taiga-contrib-letschat/front` run
 
 ```bash
-  npm install
-  gulp build
+npm install
 ```
+
+and use:
+
+- `gulp` to regenerate the source and watch for changes.
+- `gulp build` to only regenerate the source.
