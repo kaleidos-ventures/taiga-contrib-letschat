@@ -16,14 +16,14 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from taiga.base.api.permissions import (TaigaResourcePermission, IsProjectOwner,
+from taiga.base.api.permissions import (TaigaResourcePermission, IsProjectAdmin,
                                         AllowAny)
 
 
 class LetsChatHookPermission(TaigaResourcePermission):
-    retrieve_perms = IsProjectOwner()
-    create_perms = IsProjectOwner()
-    update_perms = IsProjectOwner()
-    destroy_perms = IsProjectOwner()
+    retrieve_perms = IsProjectAdmin()
+    create_perms = IsProjectAdmin()
+    update_perms = IsProjectAdmin()
+    destroy_perms = IsProjectAdmin()
     list_perms = AllowAny()
-    test_perms = IsProjectOwner()
+    test_perms = IsProjectAdmin()
