@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.apps import AppConfig
+from django.conf.urls import include, url
 
 
 def connect_taiga_contrib_letschat_signals():
@@ -36,9 +37,12 @@ class TaigaContribLetsChatAppConfig(AppConfig):
     verbose_name = "Taiga contrib LetsChat App Config"
 
     def ready(self):
-        from taiga.contrib_routers import router
+        from taiga.base import routers
+        from taiga.urls import urlpatterns
         from .api import LetsChatHookViewSet
 
+        router = routers.DefaultRouter(trailing_slash=False)
         router.register(r"letschat", LetsChatHookViewSet, base_name="letschat")
+        urlpatterns.append(url(r'^api/v1/', include(router.urls)))
 
         connect_taiga_contrib_letschat_signals()
