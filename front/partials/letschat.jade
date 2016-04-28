@@ -142,6 +142,8 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
             span Save
 
     div.help-button
-        span.icon.icon-help
-        span Let's Chat messages endpoint :host/rooms/:room_id_or_slug/messages <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        span For example: <a>http:\/\/localhost:5000\/rooms\/54eafca13b8263d2cb5a48b1\/messages</a>
+        tg-svg(
+            svg-icon="icon-question"
+        )
+        p.small Let's Chat messages endpoint :host/rooms/:room_id_or_slug/messages
+        p.small For example: <a>http:\/\/localhost:5000\/rooms\/54eafca13b8263d2cb5a48b1\/messages</a>
