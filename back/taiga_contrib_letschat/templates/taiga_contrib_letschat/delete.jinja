@@ -4,6 +4,8 @@
     {{ _("Deleted Task: ") }} #{{obj.ref}}: {{obj.subject}}
 {% elif obj_type == "userstory" %}
     {{ _("Deleted User Story: ") }} #{{obj.ref}}: {{obj.subject}}
+{% elif obj_type == "epic" %}
+    {{ _("Deleted Epic: ") }} #{{obj.ref}}: {{obj.subject}}
 {% elif obj_type == "wikipage" %}
     {{ _("Deleted Wiki Page: ") }} {{obj.slug}}
 {% elif obj_type == "milestone" %}

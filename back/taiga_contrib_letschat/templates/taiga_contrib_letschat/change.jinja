@@ -7,6 +7,9 @@
 {% elif obj_type == "userstory" %}
     {% set final_url = resolve_front_url("userstory", obj.project.slug, obj.ref) %}
     {{ _("Changed User Story: ") }}[#{{obj.ref}}: {{obj.subject}}]({{final_url}})
+{% elif obj_type == "epic" %}
+    {% set final_url = resolve_front_url("epic", obj.project.slug, obj.ref) %}
+    {{ _("Changed Epic: ") }}[#{{obj.ref}}: {{obj.subject}}]({{final_url}})
 {% elif obj_type == "wikipage" %}
     {% set final_url = resolve_front_url("wiki", obj.project.slug, obj.slug) %}
     {{ _("Changed Wiki Page: ") }}[{{obj.slug}}]({{final_url}})
