@@ -16,8 +16,9 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
                     ng-model="letschathook.url"
                     placeholder="Let's Chat messages endpoint"
                     id="url"
+                    data-type="url"
                 )
-            fieldset(ng-show="letschathook.id")
+            fieldset.contrib-test(ng-show="letschathook.id")
                 a.button-gray(href="", title="Test", ng-click="ctrl.testHook()")
                     span Test
 
@@ -194,5 +195,5 @@ div(contrib-letschat-webhooks, ng-controller="ContribLetsChatAdminController as 
         tg-svg(
             svg-icon="icon-question"
         )
-        p.small Let's Chat messages endpoint :host/rooms/:room_id_or_slug/messages
-        p.small For example: <a>http:\/\/localhost:5000\/rooms\/54eafca13b8263d2cb5a48b1\/messages</a>
+        p.small Let's Chat messages endpoint [http|https]://[host]/rooms/[room_id_or_slug]/messages
+        p.small For example: <a>http://localhost:5000/rooms/54eafca13b8263d2cb5a48b1/messages</a>

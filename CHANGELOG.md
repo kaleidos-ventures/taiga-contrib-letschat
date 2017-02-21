@@ -1,6 +1,10 @@
 # Changelog #
 
 
+## 3.1.0 (unreleased)
+- Compatible with Taiga 3.1.0
+
+
 ## 3.0.1 (2016-10-04)
 - Support epics
 
