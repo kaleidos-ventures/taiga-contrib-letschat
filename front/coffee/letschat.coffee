@@ -34,40 +34,43 @@ class LetsChatAdmin
         "tgAppMetaService",
         "$tgConfirm",
         "$tgHttp",
+        "tgProjectService"
     ]
 
-    constructor: (@rootScope, @scope, @repo, @appMetaService, @confirm, @http) ->
+    constructor: (@rootScope, @scope, @repo, @appMetaService, @confirm, @http, @projectService) ->
         @scope.sectionName = "Let's Chat" #i18n
         @scope.sectionSlug = "letschat" #i18n
 
-        @scope.$on "project:loaded", =>
-            promise = @repo.queryMany("letschat", {project: @scope.projectId})
+        @scope.project = @projectService.project.toJS()
+        @scope.projectId = @scope.project.id
 
-            promise.then (letschathooks) =>
-                @scope.letschathook = {
-                    project: @scope.projectId,
-                    notify_userstory_create: true,
-                    notify_userstory_change: true,
-                    notify_userstory_delete: true,
-                    notify_task_create: true,
-                    notify_task_change: true,
-                    notify_task_delete: true,
-                    notify_issue_create: true,
-                    notify_issue_change: true,
-                    notify_issue_delete: true,
-                    notify_wikipage_create: true,
-                    notify_wikipage_change: true,
-                    notify_wikipage_delete: true
-                }
-                if letschathooks.length > 0
-                    @scope.letschathook = letschathooks[0]
+        promise = @repo.queryMany("letschat", {project: @scope.projectId})
 
-                title = "#{@scope.sectionName} - Plugins - #{@scope.project.name}" # i18n
-                description = @scope.project.description
-                @appMetaService.setAll(title, description)
+        promise.then (letschathooks) =>
+            @scope.letschathook = {
+                project: @scope.projectId,
+                notify_userstory_create: true,
+                notify_userstory_change: true,
+                notify_userstory_delete: true,
+                notify_task_create: true,
+                notify_task_change: true,
+                notify_task_delete: true,
+                notify_issue_create: true,
+                notify_issue_change: true,
+                notify_issue_delete: true,
+                notify_wikipage_create: true,
+                notify_wikipage_change: true,
+                notify_wikipage_delete: true
+            }
+            if letschathooks.length > 0
+                @scope.letschathook = letschathooks[0]
 
-            promise.then null, =>
-                @confirm.notify("error")
+            title = "#{@scope.sectionName} - Plugins - #{@scope.project.name}" # i18n
+            description = @scope.project.description
+            @appMetaService.setAll(title, description)
+
+        promise.then null, =>
+            @confirm.notify("error")
 
     testHook: () ->
         promise = @http.post(@repo.resolveUrlForModel(@scope.letschathook) + '/test')
